@@ -13,16 +13,22 @@
     <h1>アタポンでキリのいいポイント計算機</h1>
     
     <span style="font-size:small">
+      GRANDを使う場合、93pt以上稼ぎたい場合は確実にpt調整が出来ます。<br />
+      それ以下でも出来ないわけではないですが、保証できませんし当計算機で計算もできません。<br />
+      GRANDを使わない場合、130pt以上ならば同様のことが言えます。
       <a href="http://kzk.hatenadiary.com/entry/2018/01/12/214111">計算の説明</a><br />
-      <a href="https://kizokizokizokun.github.io/DeresutePointAdjustment/old.html">GRANDなしはこちら</a>
     </span><br /><br />
     
 
     <form action="#" name="form1">
-        <bold>現在のPoint:</bold> <input type="text" name="nowpoint"> <bold>目標Point:</bold> <input type="text" name="nowpoint" onchange="pre_calc()">
-        もしくは<br />
-        <bold>稼ぎたいPoint:</bold> <input type="text" name="nowpoint" onchange="calc()"><input type="text" name="dummy" style="display:none;"><br />      <span id="error"style="visibility:hidden;">93pt以上を入力してね！</span>
-      <h2>通常楽曲(2倍消費・スコアS前提)</h2>
+        <bold>現在のPoint: </bold> <input type="text" name="now" value=0 onchange="calc()"><br />
+        <bold>目標のPoint: </bold><input type="text" name="target" placeholder="10000" onchange="calc()"><br />
+        <bold>所持アイテム数: </bold><input type="text" name="emb" value="0" onchange="calc()"><br />
+        <input type="checkbox" name="baisoku" checked="checked" onchange="calc()">通常楽曲2倍<br />
+        <input type="checkbox" name="wGrand" checked="checked" onchange="calc()">Grandもプレイする<br />
+        <input type="text" name="dummy" style="display:none;">
+        <span id="error"style="visibility:hidden;">目標 - 現在ptが<span id="adj_min"></span>pt以上のときにのみ対応しています。</span>
+      <h2>通常楽曲(スコアS前提)</h2>
       <table>
         <tr>
           <th></th>
@@ -41,12 +47,11 @@
         <tr id="_17"><td>Pro</td><td>17</td><td>47</td><td><span id="17"></span></td><td><span id="17_"></span></td></tr>
         <tr id="_18"><td>Mas</td><td>18</td><td>50</td><td><span id="18"></span></td><td><span id="18_"></span></td></tr>
         <tr id="_19"><td>Mas</td><td>19</td><td>53</td><td><span id="19"></span></td><td><span id="19_"></span></td></tr>
-        <tr id="_70"><td>Piano</td><td>25</td><td>70</td><td><span id="25"></span></td><td><span id="25_"></span></td></tr>
-        <tr id="_84"><td>Forte</td><td>30</td><td>84</td><td><span id="30"></span></td><td><span id="30_"></span></td></tr>
+        <tr id="_25"><td>Piano</td><td>25</td><td>70</td><td><span id="25"></span></td><td><span id="25_"></span></td></tr>
+        <tr id="_30"><td>Forte</td><td>30</td><td>84</td><td><span id="30"></span></td><td><span id="30_"></span></td></tr>
 
-        <tr><td><strong>合計</strong></td><td><span id="sta"></span></td><td></td><td><span id="total"></span></td><td><span id="total_"></span></td></tr>
       </table>
-      <h2>イベント楽曲(1倍速、アイテムなしからスタート)</h2>
+      <h2>イベント楽曲(等倍でのプレイ回数)</h2>
       <table>
         <tr>
           <th>難易度</th>
