@@ -1,8 +1,6 @@
-function pre_calc(value) {
-    //    document.getElementById(id);
-    console.log("hoga")
-}
 function calc(value) {
-//    document.getElementById(id);
-console.log("hoge")
+    var form = document.forms.form1;
+    console.log(target-now)
+    
+
 }
